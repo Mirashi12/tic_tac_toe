@@ -83,5 +83,13 @@ const gameLogic = (() =>{
     }
 })();
 
+const Player = (name) => {
+    const getName = () => name;
+    let score = 0;
+    const getScore = () => score;
+    const increaseScore = () => score+=1;
+
+    return {getName, getScore, increaseScore}
+}
+
 gameBoard.build_board();
-gameLogic.check_victory();
