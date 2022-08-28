@@ -1,0 +1,29 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: rgb(53, 53, 53);
+}
+
+main {
+    display: grid;
+    grid-template-columns: .5fr 1fr .5fr;
+    height: 100vh;
+}
+
+
+.game_board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height: 600px;
+    background-color: rgb(47, 188, 227);
+}
+
+.board_tile {
+    height: 200px;
+    border: solid 1px red;
+    text-align: center;
+}
