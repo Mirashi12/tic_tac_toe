@@ -10,24 +10,32 @@ const gameBoard = (() => {
             const board_tile = document.createElement('div');
             board_tile.classList.add('board_tile');
             board_tile.setAttribute('id', board.indexOf(tile));
-            board_tile.addEventListener('click', function () {
+            board_tile.addEventListener('click', function clickTile () {
                 if (gameLogic.display_counter() % 2 != 0) {
                     this.textContent = 'X';
                     board[tile] = 'X';
                     gameLogic.check_victory();
                     gameLogic.increase_counter();
+                    board_tile.removeEventListener('click', clickTile);
                 } else if (gameLogic.display_counter() % 2 == 0) {
                     this.textContent = 'O';
                     board[tile] = 'O';
                     gameLogic.check_victory();
                     gameLogic.increase_counter();
+                    board_tile.removeEventListener('click', clickTile);
                 }
             });
         board_container.append(board_tile);
     })}
 
+    const reset_board = () => {
+        const all_tiles = document.querySelectorAll('.board_tile');
+        all_tiles.forEach( tile => tile.remove);
+    }
+
     return {
         build_board,
+        reset_board,
         board
     };
 })();
