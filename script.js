@@ -3,14 +3,6 @@
 const gameBoard = (() => {
 
     let board = Array.from(Array(9).keys());
-    let horizontal_1 = board.slice(0, 3);
-    let horizontal_2 = board.slice(3,6);
-    let horizontal_3 = board.slice(6,9);
-    let vertical_1 = [board.at(0), board.at(3), board.at(6)];
-    let vertical_2 = [board.at(1), board.at(4), board.at(7)];
-    let vertical_3 = [board.at(2), board.at(5), board.at(8)];
-    let diagonal_1 = [board.at(0), board.at(4), board.at(8)];
-    let diagonal_2 = [board.at(2), board.at(4), board.at(6)];
 
     const build_board = () => {
 
