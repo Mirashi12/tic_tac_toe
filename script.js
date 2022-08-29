@@ -77,7 +77,7 @@ const gameLogic = (() =>{
         
 
     const checkHorizontal1 = () => {
-        horizontal_1 = gameBoard.getBoardState().slice(0, 3);
+        let horizontal_1 = gameBoard.getBoardState().slice(0, 3);
         if (horizontal_1.every(is_all_o) == true || horizontal_1.every(is_all_x) == true) {
             if (horizontal_1.every(is_all_o) == true) {
                 alert('Player 1 won');
@@ -96,7 +96,7 @@ const gameLogic = (() =>{
     }
         
     const checkHorizontal2 = () => {
-        horizontal_2 = gameBoard.getBoardState().slice(3,6);
+        let horizontal_2 = gameBoard.getBoardState().slice(3,6);
         if (horizontal_2.every(is_all_o) == true || horizontal_2.every(is_all_x) == true) {
             if (horizontal_2.every(is_all_o) == true) {
                 alert('Player 1 won');
@@ -114,7 +114,7 @@ const gameLogic = (() =>{
     }
     
     const checkHorizontal3 = () => {
-        horizontal_3 = gameBoard.getBoardState().slice(6,9);
+        let horizontal_3 = gameBoard.getBoardState().slice(6,9);
         if (horizontal_3.every(is_all_o) == true || horizontal_3.every(is_all_x) == true) {
             if (horizontal_3.every(is_all_o) == true) {
                 alert('Player 1 won');
@@ -132,7 +132,7 @@ const gameLogic = (() =>{
     }
     
     const checkVertical1 = () => {
-        vertical_1 = [gameBoard.getBoardState().at(0), gameBoard.getBoardState().at(3), gameBoard.getBoardState().at(6)];
+        let vertical_1 = [gameBoard.getBoardState().at(0), gameBoard.getBoardState().at(3), gameBoard.getBoardState().at(6)];
         if (vertical_1.every(is_all_o) == true || vertical_1.every(is_all_x) == true) {
             if (vertical_1.every(is_all_o) == true) {
                 alert('Player 1 won');
@@ -150,7 +150,7 @@ const gameLogic = (() =>{
     }
     
     const checkVertical2 = () => {
-        vertical_2 = [gameBoard.getBoardState().at(1), gameBoard.getBoardState().at(4), gameBoard.getBoardState().at(7)];
+        let vertical_2 = [gameBoard.getBoardState().at(1), gameBoard.getBoardState().at(4), gameBoard.getBoardState().at(7)];
         if (vertical_2.every(is_all_o) == true || vertical_2.every(is_all_x) == true) {
             if (vertical_2.every(is_all_o) == true) {
                 alert('Player 1 won');
@@ -168,7 +168,7 @@ const gameLogic = (() =>{
     }
     
     const checkVertical3 = () => {
-        vertical_3 = [gameBoard.getBoardState().at(2), gameBoard.getBoardState().at(5), gameBoard.getBoardState().at(8)];
+        let vertical_3 = [gameBoard.getBoardState().at(2), gameBoard.getBoardState().at(5), gameBoard.getBoardState().at(8)];
         if (vertical_3.every(is_all_o) == true || vertical_3.every(is_all_x) == true) {
             if (vertical_3.every(is_all_o) == true) {
                 alert('Player 1 won');
@@ -186,7 +186,7 @@ const gameLogic = (() =>{
     }
     
     const checkDiagonal1 = () => {
-        diagonal_1 = [gameBoard.getBoardState().at(0), gameBoard.getBoardState().at(4), gameBoard.getBoardState().at(8)];
+        let diagonal_1 = [gameBoard.getBoardState().at(0), gameBoard.getBoardState().at(4), gameBoard.getBoardState().at(8)];
         if (diagonal_1.every(is_all_o) == true || diagonal_1.every(is_all_x) == true) {
             if (diagonal_1.every(is_all_o) == true) {
                 alert('Player 1 won');
@@ -204,7 +204,7 @@ const gameLogic = (() =>{
     }
             
     const checkDiagonal2 = () => {
-        diagonal_2 = [gameBoard.getBoardState().at(2), gameBoard.getBoardState().at(4), gameBoard.getBoardState().at(6)];
+        let diagonal_2 = [gameBoard.getBoardState().at(2), gameBoard.getBoardState().at(4), gameBoard.getBoardState().at(6)];
         if (diagonal_2.every(is_all_o) == true || diagonal_2.every(is_all_x) == true) {
             if (diagonal_2.every(is_all_o) == true) {
                 alert('Player 1 won');
