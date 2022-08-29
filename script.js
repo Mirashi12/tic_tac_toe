@@ -2,9 +2,18 @@
 
 const gameBoard = (() => {
 
-    const board = Array.from(Array(9).keys());
+    let board = Array.from(Array(9).keys());
+    let horizontal_1 = board.slice(0, 3);
+    let horizontal_2 = board.slice(3,6);
+    let horizontal_3 = board.slice(6,9);
+    let vertical_1 = [board.at(0), board.at(3), board.at(6)];
+    let vertical_2 = [board.at(1), board.at(4), board.at(7)];
+    let vertical_3 = [board.at(2), board.at(5), board.at(8)];
+    let diagonal_1 = [board.at(0), board.at(4), board.at(8)];
+    let diagonal_2 = [board.at(2), board.at(4), board.at(6)];
 
     const build_board = () => {
+
         const board_container = document.querySelector('.game_board'); 
         board.forEach(tile => {
             const board_tile = document.createElement('div');
@@ -28,15 +37,20 @@ const gameBoard = (() => {
         board_container.append(board_tile);
     })}
 
+    const getBoardState = () => {
+        return board;
+    }
+
     const reset_board = () => {
         const all_tiles = document.querySelectorAll('.board_tile');
-        all_tiles.forEach( tile => tile.remove);
+        all_tiles.forEach( tile => document.querySelector('.game_board').removeChild(tile));
+        board = Array.from(Array(9).keys());
     }
 
     return {
         build_board,
         reset_board,
-        board
+        getBoardState
     };
 })();
 
@@ -51,42 +65,175 @@ const gameLogic = (() =>{
         move_counter += 1;
     };
 
-    const check_victory = () => {
-        const horizontal_1 = gameBoard.board.slice(0, 3);
-        const horizontal_2 = gameBoard.board.slice(3,6);
-        const horizontal_3 = gameBoard.board.slice(6,9);
-        const vertical_1 = [gameBoard.board.at(0), gameBoard.board.at(3), gameBoard.board.at(6)];
-        const vertical_2 = [gameBoard.board.at(1), gameBoard.board.at(4), gameBoard.board.at(7)];
-        const vertical_3 = [gameBoard.board.at(2), gameBoard.board.at(5), gameBoard.board.at(8)];
-        const diagonal_1 = [gameBoard.board.at(0), gameBoard.board.at(4), gameBoard.board.at(8)];
-        const diagonal_2 = [gameBoard.board.at(2), gameBoard.board.at(4), gameBoard.board.at(6)];
-
-        const is_all_x = (current_tile) => current_tile == 'X';
-        const is_all_o = (current_tile) => current_tile == 'O';
-        
-        if (horizontal_1.every(is_all_o) == true || horizontal_1.every(is_all_x) == true) {
-            console.log('win');
-        } else if (horizontal_2.every(is_all_o) == true || horizontal_2.every(is_all_x) == true) {
-            console.log('win');
-        } else if (horizontal_3.every(is_all_o) == true || horizontal_3.every(is_all_x) == true) {
-            console.log('win');
-        } else if (vertical_1.every(is_all_o) == true || vertical_1.every(is_all_x) == true) {
-            console.log('win');
-        } else if (vertical_2.every(is_all_o) == true || vertical_2.every(is_all_x) == true) {
-            console.log('win');
-        } else if (vertical_3.every(is_all_o) == true || vertical_3.every(is_all_x) == true) {
-            console.log('win');
-        } else if (diagonal_1.every(is_all_o) == true || diagonal_1.every(is_all_x) == true) {
-            console.log('win');
-        } else if (diagonal_2.every(is_all_o) == true || diagonal_2.every(is_all_x) == true) {
-            console.log('win');
-        }
-
+    const reset_counter = () => {
+        counter = 0;
     };
+
+    const is_all_x = (current_tile) => current_tile == 'X';
+    const is_all_o = (current_tile) => current_tile == 'O';
+
+    const check_victory = () => {
+        checkHorizontal1();
+        checkHorizontal2();
+        checkHorizontal3();
+        checkVertical1();
+        checkVertical2();
+        checkVertical3();
+        checkDiagonal1();
+        checkDiagonal2();
+    }
+        
+
+    const checkHorizontal1 = () => {
+        horizontal_1 = gameBoard.getBoardState().slice(0, 3);
+        if (horizontal_1.every(is_all_o) == true || horizontal_1.every(is_all_x) == true) {
+            if (horizontal_1.every(is_all_o) == true) {
+                alert('Player 1 won');
+                player1.increaseScore();
+                gameBoard.reset_board();
+                gameBoard.build_board();
+            } else if (horizontal_1.every(is_all_x) == true) {
+                alert('Player 2 won');
+                player2.increaseScore();
+                gameBoard.reset_board();
+                gameLogic.reset_counter()
+                gameBoard.build_board();
+            }
+        }
+        return horizontal_1;
+    }
+        
+    const checkHorizontal2 = () => {
+        horizontal_2 = gameBoard.getBoardState().slice(3,6);
+        if (horizontal_2.every(is_all_o) == true || horizontal_2.every(is_all_x) == true) {
+            if (horizontal_2.every(is_all_o) == true) {
+                alert('Player 1 won');
+                player1.increaseScore();
+                gameBoard.reset_board();
+                gameBoard.build_board();
+            } else if (horizontal_2.every(is_all_x) == true) {
+                alert('Player 2 won');
+                player2.increaseScore();
+                gameBoard.reset_board();
+                gameBoard.build_board();
+            }
+        }
+        return horizontal_2;
+    }
+    
+    const checkHorizontal3 = () => {
+        horizontal_3 = gameBoard.getBoardState().slice(6,9);
+        if (horizontal_3.every(is_all_o) == true || horizontal_3.every(is_all_x) == true) {
+            if (horizontal_3.every(is_all_o) == true) {
+                alert('Player 1 won');
+                player1.increaseScore();
+                gameBoard.reset_board();
+                gameBoard.build_board();
+            } else if (horizontal_3.every(is_all_x) == true) {
+                alert('Player 2 won');
+                player2.increaseScore();
+                gameBoard.reset_board();
+                gameBoard.build_board();
+            }
+        }
+        return horizontal_3;
+    }
+    
+    const checkVertical1 = () => {
+        vertical_1 = [gameBoard.getBoardState().at(0), gameBoard.getBoardState().at(3), gameBoard.getBoardState().at(6)];
+        if (vertical_1.every(is_all_o) == true || vertical_1.every(is_all_x) == true) {
+            if (vertical_1.every(is_all_o) == true) {
+                alert('Player 1 won');
+                player1.increaseScore();
+                gameBoard.reset_board();
+                gameBoard.build_board();
+            } else if (vertical_1.every(is_all_x) == true) {
+                alert('Player 2 won');
+                player2.increaseScore();
+                gameBoard.reset_board();
+                gameBoard.build_board();
+            }
+        }
+        return vertical_1;
+    }
+    
+    const checkVertical2 = () => {
+        vertical_2 = [gameBoard.getBoardState().at(1), gameBoard.getBoardState().at(4), gameBoard.getBoardState().at(7)];
+        if (vertical_2.every(is_all_o) == true || vertical_2.every(is_all_x) == true) {
+            if (vertical_2.every(is_all_o) == true) {
+                alert('Player 1 won');
+                player1.increaseScore();
+                gameBoard.reset_board();
+                gameBoard.build_board();
+            } else if (vertical_2.every(is_all_x) == true) {
+                alert('Player 2 won');
+                player2.increaseScore();
+                gameBoard.reset_board();
+                gameBoard.build_board();
+            }
+        }
+        return vertical_2;
+    }
+    
+    const checkVertical3 = () => {
+        vertical_3 = [gameBoard.getBoardState().at(2), gameBoard.getBoardState().at(5), gameBoard.getBoardState().at(8)];
+        if (vertical_3.every(is_all_o) == true || vertical_3.every(is_all_x) == true) {
+            if (vertical_3.every(is_all_o) == true) {
+                alert('Player 1 won');
+                player1.increaseScore();
+                gameBoard.reset_board();
+                gameBoard.build_board();
+            } else if (vertical_3.every(is_all_x) == true) {
+                alert('Player 2 won');
+                player2.increaseScore();
+                gameBoard.reset_board();
+                gameBoard.build_board();
+            }
+        }
+        return vertical_3;
+    }
+    
+    const checkDiagonal1 = () => {
+        diagonal_1 = [gameBoard.getBoardState().at(0), gameBoard.getBoardState().at(4), gameBoard.getBoardState().at(8)];
+        if (diagonal_1.every(is_all_o) == true || diagonal_1.every(is_all_x) == true) {
+            if (diagonal_1.every(is_all_o) == true) {
+                alert('Player 1 won');
+                player1.increaseScore();
+                gameBoard.reset_board();
+                gameBoard.build_board();
+            } else if (diagonal_1.every(is_all_x) == true) {
+                alert('Player 2 won');
+                player2.increaseScore();
+                gameBoard.reset_board();
+                gameBoard.build_board();
+            }
+        }
+        return diagonal_1;
+    }
+            
+    const checkDiagonal2 = () => {
+        diagonal_2 = [gameBoard.getBoardState().at(2), gameBoard.getBoardState().at(4), gameBoard.getBoardState().at(6)];
+        if (diagonal_2.every(is_all_o) == true || diagonal_2.every(is_all_x) == true) {
+            if (diagonal_2.every(is_all_o) == true) {
+                alert('Player 1 won');
+                player1.increaseScore();
+                gameBoard.reset_board();
+                gameBoard.build_board();
+            } else if (diagonal_2.every(is_all_x) == true) {
+                alert('Player 2 won');
+                player2.increaseScore();
+                gameBoard.reset_board();
+                gameBoard.build_board();
+            }
+        }
+        return diagonal_2;
+    }
+
 
     return {
         display_counter,
         increase_counter,
+        reset_counter,
         check_victory
     }
 })();
@@ -99,5 +246,8 @@ const Player = (name) => {
 
     return {getName, getScore, increaseScore}
 }
+
+const player1 = Player('Player1');
+const player2 = Player('Player2');
 
 gameBoard.build_board();

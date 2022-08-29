@@ -19,11 +19,20 @@ main {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     height: 600px;
+    width: 600px;
+    justify-self: center;
+    align-self: center;
     background-color: rgb(47, 188, 227);
 }
 
 .board_tile {
-    height: 200px;
+    display: flex;
     border: solid 1px red;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
+}
+
+.player_1 {
+    justify-self: flex-end;
 }
